@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Currículo - Davi Oliveira</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+	</head>
+	<body class="bg-gray-100 text-gray-800 font-sans">
+		<div class="container mx-auto p-6 max-w-4xl">
+			<!-- Cabeçalho -->
+			<header class="text-center mb-8">
+				<h1 class="text-4xl font-bold text-blue-800">Davi Oliveira</h1>
+				<p class="text-xl text-gray-600">
+					Engenheiro de Dados Jr / Desenvolvedor Full-Stack
+				</p>
+			</header>
+
+			<!-- Resumo -->
+			<section class="mb-8">
+				<h2 class="text-2xl font-semibold text-blue-800 mb-4">
+					Resumo
+				</h2>
+				<p class="text-gray-700 leading-relaxed" id="resumo"></p>
+			</section>
+
+			<!-- Experiência -->
+			<section class="mb-8">
+				<h2 class="text-2xl font-semibold text-blue-800 mb-4">
+					Experiência
+				</h2>
+				<div id="experiencia" class="space-y-4"></div>
+			</section>
+
+			<!-- Certificações -->
+			<section class="mb-8">
+				<h2 class="text-2xl font-semibold text-blue-800 mb-4">
+					Certificações
+				</h2>
+				<ul
+					id="certificacoes"
+					class="list-disc list-inside text-gray-700"
+				></ul>
+			</section>
+
+			<!-- Formação -->
+			<section class="mb-8">
+				<h2 class="text-2xl font-semibold text-blue-800 mb-4">
+					Formação
+				</h2>
+				<div id="formacao" class="space-y-4"></div>
+			</section>
+
+			<!-- Contato -->
+			<section class="mb-8">
+				<h2 class="text-2xl font-semibold text-blue-800 mb-4">
+					Contato
+				</h2>
+				<div id="contato" class="text-gray-700"></div>
+			</section>
+
+			<!-- Tecnologias -->
+			<section class="mb-8">
+				<h2 class="text-2xl font-semibold text-blue-800 mb-4">
+					Tecnologias
+				</h2>
+				<div id="tecnologias" class="flex flex-wrap gap-2"></div>
+			</section>
+
+			<!-- Linguagens -->
+			<section class="mb-8">
+				<h2 class="text-2xl font-semibold text-blue-800 mb-4">
+					Linguagens
+				</h2>
+				<div id="linguagens" class="flex flex-wrap gap-2"></div>
+			</section>
+		</div>
+
+		<!-- Script externo para consumir o JSON e preencher o currículo -->
+		<script src="script.js"></script>
+	</body>
+</html>
