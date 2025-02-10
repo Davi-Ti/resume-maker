@@ -3,80 +3,246 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Currículo - Davi Oliveira</title>
+		<title>Gerador de Currículo</title>
 		<script src="https://cdn.tailwindcss.com"></script>
 	</head>
 	<body class="bg-gray-100 text-gray-800 font-sans">
 		<div class="container mx-auto p-6 max-w-4xl">
-			<!-- Cabeçalho -->
-			<header class="text-center mb-8">
-				<h1 class="text-4xl font-bold text-blue-800">Davi Oliveira</h1>
-				<p class="text-xl text-gray-600">
-					Engenheiro de Dados Jr / Desenvolvedor Full-Stack
-				</p>
-			</header>
+			<!-- Botões para escolher o modo de preenchimento -->
+			<div class="mb-8 flex gap-4">
+				<button
+					id="btnFormulario"
+					class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+				>
+					Preencher via Formulário
+				</button>
+				<button
+					id="btnJson"
+					class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+				>
+					Preencher via JSON
+				</button>
+				<button
+					id="btnImportar"
+					class="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600"
+				>
+					Importar JSON
+				</button>
+			</div>
 
-			<!-- Resumo -->
-			<section class="mb-8">
+			<!-- Formulário para preenchimento -->
+			<section
+				id="formularioSection"
+				class="mb-8 bg-white p-6 rounded-lg shadow hidden"
+			>
 				<h2 class="text-2xl font-semibold text-blue-800 mb-4">
-					Resumo
+					Preencha suas informações
 				</h2>
-				<p class="text-gray-700 leading-relaxed" id="resumo"></p>
+				<form id="formulario" class="space-y-4">
+					<div>
+						<label class="block text-gray-700">Nome</label>
+						<input
+							type="text"
+							id="nome"
+							class="w-full p-2 border rounded"
+							required
+						/>
+					</div>
+					<div>
+						<label class="block text-gray-700">Cargo</label>
+						<input
+							type="text"
+							id="cargo"
+							class="w-full p-2 border rounded"
+							required
+						/>
+					</div>
+					<div>
+						<label class="block text-gray-700">Resumo</label>
+						<textarea
+							id="resumoInput"
+							class="w-full p-2 border rounded"
+							rows="4"
+							required
+						></textarea>
+					</div>
+					<div>
+						<label class="block text-gray-700"
+							>Experiência (JSON)</label
+						>
+						<textarea
+							id="experienciaInput"
+							class="w-full p-2 border rounded"
+							rows="4"
+							required
+						></textarea>
+					</div>
+					<div>
+						<label class="block text-gray-700"
+							>Certificações (uma por linha)</label
+						>
+						<textarea
+							id="certificacoesInput"
+							class="w-full p-2 border rounded"
+							rows="4"
+							required
+						></textarea>
+					</div>
+					<div>
+						<label class="block text-gray-700"
+							>Formação (JSON)</label
+						>
+						<textarea
+							id="formacaoInput"
+							class="w-full p-2 border rounded"
+							rows="4"
+							required
+						></textarea>
+					</div>
+					<div>
+						<label class="block text-gray-700"
+							>Contato (JSON)</label
+						>
+						<textarea
+							id="contatoInput"
+							class="w-full p-2 border rounded"
+							rows="4"
+							required
+						></textarea>
+					</div>
+					<div>
+						<label class="block text-gray-700"
+							>Tecnologias (uma por linha)</label
+						>
+						<textarea
+							id="tecnologiasInput"
+							class="w-full p-2 border rounded"
+							rows="4"
+							required
+						></textarea>
+					</div>
+					<div>
+						<label class="block text-gray-700"
+							>Linguagens (uma por linha)</label
+						>
+						<textarea
+							id="linguagensInput"
+							class="w-full p-2 border rounded"
+							rows="4"
+							required
+						></textarea>
+					</div>
+					<button
+						type="submit"
+						class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+					>
+						Gerar Currículo
+					</button>
+				</form>
 			</section>
 
-			<!-- Experiência -->
-			<section class="mb-8">
+			<!-- Área para preencher JSON -->
+			<section
+				id="jsonSection"
+				class="mb-8 bg-white p-6 rounded-lg shadow hidden"
+			>
 				<h2 class="text-2xl font-semibold text-blue-800 mb-4">
-					Experiência
+					Preencha o JSON
 				</h2>
-				<div id="experiencia" class="space-y-4"></div>
+				<textarea
+					id="jsonInput"
+					class="w-full p-2 border rounded"
+					rows="20"
+				></textarea>
+				<button
+					id="btnGerarJson"
+					class="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
+				>
+					Gerar Currículo
+				</button>
 			</section>
 
-			<!-- Certificações -->
-			<section class="mb-8">
-				<h2 class="text-2xl font-semibold text-blue-800 mb-4">
-					Certificações
-				</h2>
-				<ul
-					id="certificacoes"
-					class="list-disc list-inside text-gray-700"
-				></ul>
-			</section>
+			<!-- Currículo Gerado -->
+			<section id="curriculo" class="hidden">
+				<header class="text-center mb-8">
+					<h1
+						class="text-4xl font-bold text-blue-800"
+						id="curriculoNome"
+					></h1>
+					<p class="text-xl text-gray-600" id="curriculoCargo"></p>
+				</header>
 
-			<!-- Formação -->
-			<section class="mb-8">
-				<h2 class="text-2xl font-semibold text-blue-800 mb-4">
-					Formação
-				</h2>
-				<div id="formacao" class="space-y-4"></div>
-			</section>
+				<!-- Resumo -->
+				<section class="mb-8">
+					<h2 class="text-2xl font-semibold text-blue-800 mb-4">
+						Resumo
+					</h2>
+					<p
+						class="text-gray-700 leading-relaxed"
+						id="curriculoResumo"
+					></p>
+				</section>
 
-			<!-- Contato -->
-			<section class="mb-8">
-				<h2 class="text-2xl font-semibold text-blue-800 mb-4">
-					Contato
-				</h2>
-				<div id="contato" class="text-gray-700"></div>
-			</section>
+				<!-- Experiência -->
+				<section class="mb-8">
+					<h2 class="text-2xl font-semibold text-blue-800 mb-4">
+						Experiência
+					</h2>
+					<div id="curriculoExperiencia" class="space-y-4"></div>
+				</section>
 
-			<!-- Tecnologias -->
-			<section class="mb-8">
-				<h2 class="text-2xl font-semibold text-blue-800 mb-4">
-					Tecnologias
-				</h2>
-				<div id="tecnologias" class="flex flex-wrap gap-2"></div>
-			</section>
+				<!-- Certificações -->
+				<section class="mb-8">
+					<h2 class="text-2xl font-semibold text-blue-800 mb-4">
+						Certificações
+					</h2>
+					<ul
+						id="curriculoCertificacoes"
+						class="list-disc list-inside text-gray-700"
+					></ul>
+				</section>
 
-			<!-- Linguagens -->
-			<section class="mb-8">
-				<h2 class="text-2xl font-semibold text-blue-800 mb-4">
-					Linguagens
-				</h2>
-				<div id="linguagens" class="flex flex-wrap gap-2"></div>
+				<!-- Formação -->
+				<section class="mb-8">
+					<h2 class="text-2xl font-semibold text-blue-800 mb-4">
+						Formação
+					</h2>
+					<div id="curriculoFormacao" class="space-y-4"></div>
+				</section>
+
+				<!-- Contato -->
+				<section class="mb-8">
+					<h2 class="text-2xl font-semibold text-blue-800 mb-4">
+						Contato
+					</h2>
+					<div id="curriculoContato" class="text-gray-700"></div>
+				</section>
+
+				<!-- Tecnologias -->
+				<section class="mb-8">
+					<h2 class="text-2xl font-semibold text-blue-800 mb-4">
+						Tecnologias
+					</h2>
+					<div
+						id="curriculoTecnologias"
+						class="flex flex-wrap gap-2"
+					></div>
+				</section>
+
+				<!-- Linguagens -->
+				<section class="mb-8">
+					<h2 class="text-2xl font-semibold text-blue-800 mb-4">
+						Linguagens
+					</h2>
+					<div
+						id="curriculoLinguagens"
+						class="flex flex-wrap gap-2"
+					></div>
+				</section>
 			</section>
 		</div>
 
-		<!-- Script externo para consumir o JSON e preencher o currículo -->
+		<!-- Script para gerar o currículo -->
 		<script src="script.js"></script>
 	</body>
 </html>
