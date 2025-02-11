@@ -17,15 +17,21 @@ const templateJson = {
 	linguagens: [],
 };
 
-// Mostrar formulário ou JSON
+// Mostrar formulário ou JSON com animação
 document.getElementById("btnFormulario").addEventListener("click", () => {
-	document.getElementById("formularioSection").classList.remove("hidden");
-	document.getElementById("jsonSection").classList.add("hidden");
+	const formularioSection = document.getElementById("formularioSection");
+	const jsonSection = document.getElementById("jsonSection");
+	formularioSection.classList.remove("hidden");
+	jsonSection.classList.add("hidden");
+	formularioSection.classList.add("fade-in");
 });
 
 document.getElementById("btnJson").addEventListener("click", () => {
-	document.getElementById("jsonSection").classList.remove("hidden");
-	document.getElementById("formularioSection").classList.add("hidden");
+	const formularioSection = document.getElementById("formularioSection");
+	const jsonSection = document.getElementById("jsonSection");
+	jsonSection.classList.remove("hidden");
+	formularioSection.classList.add("hidden");
+	jsonSection.classList.add("fade-in");
 	document.getElementById("jsonInput").value = JSON.stringify(
 		templateJson,
 		null,
